@@ -1,0 +1,47 @@
+﻿@model IEnumerable<VenueViewModel>
+
+@{
+    ViewData["Title"] = "VenueList";
+}
+<br />
+<h4>Venue List</h4>
+<hr />
+<p>
+    <a asp-action="InsertVenue" class="btn btn-outline-primary">Add Venue</a>
+</p>
+<table class="table">
+    <thead class="text-center">
+        <tr>
+            <th>
+                Venue Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Capacity
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>
+                    @Html.DisplayFor(modelItem => item.VenueName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SeatCapacity)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "UpdateVenue", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "RemoveVenue", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

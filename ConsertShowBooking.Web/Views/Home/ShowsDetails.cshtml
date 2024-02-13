@@ -1,0 +1,42 @@
+﻿@model ShowsDetailsViewModel
+
+<div class="row m-3">
+    <div class="col-md-6">
+        <img src="@Model.showsImage" alt="Concert show img" height="580" width="720" />
+    </div>
+    <div class="col-md-6">
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card border-info">
+                        <div class="card-header bg-info text-white">
+                            <h5 class="card-title">@Model.ShowName</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">@Model.Description</p>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Venue: <strong>@Model.VenueName</strong></li>
+                                <li class="list-group-item">Address: <strong>@Model.VenueAddress</strong></li>
+                                <li class="list-group-item">Date: <strong>@Model.ShowDate.ToString("MMM dd yyyy hh:mm")</strong></li>
+                            </ul>
+                            <div class="text-center mt-3">
+                                <img src="@Model.ArtistImage" alt="Artist Image" class="rounded-circle img-fluid" style="height:150px;width:150px;" />
+                            </div>
+                            <p class="card-text text-center mt-3">Performer: <strong>@Model.ArtistName</strong></p>
+                            <div class="text-center">
+                                <a asp-action="TicketAvailability" asp-route-id="@Model.ShowId" class="btn btn-outline-info">See Available Tickets</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-secondary">Back</a>
+</div>
+
+

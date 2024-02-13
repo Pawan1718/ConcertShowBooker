@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ConsertShowBooking.Web.ViewModels.TicketsViewModels.BookingViewModel>
+
+<h4>My Tickets</h4>
+<hr />
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card concert-ticket" id="booking-@item.BookingId">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="card-title mb-0"> @item.ShowName</h5>
+                        <p class="card-title">Concert Date: @item.ShowDate</p>
+                    </div>
+                    <div class="card-body">
+                        <img src="@item.ShowImage" class="img-fluid mb-2" alt="Concert Image">
+                        <p class="card-text">Booking Date: @item.BookingDate</p>
+                        <ul class="list-group">
+                            @foreach (var ticket in item.Tickets)
+                            {
+                                <li class="list-group-item">Seat No: @ticket.SeatNo</li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-outline-success" onclick="printTicket('@item.BookingId')">Print</button>
+                        <button class="btn btn-outline-primary" onclick="downloadTicket('@item.BookingId')">Download</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    function printTicket(bookingId) {
+        var element = document.getElementById('booking-' + bookingId);
+        window.print();
+    }
+
+    function downloadTicket(bookingId) {
+        var element = document.getElementById('booking-' + bookingId);
+        var ticketContent = element.outerHTML;
+        var blob = new Blob([ticketContent], { type: 'text/html' });
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'ticket.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    }
+</script>

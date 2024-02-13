@@ -1,0 +1,27 @@
+﻿@model List<HomeViewModel>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<br/>
+<h4>Upcoming Events</h4>
+<hr />
+<div class="row mt-2">
+          @foreach (var item in Model)
+        {
+            <div class="col-3 mb-2">
+                <div class="card" style="width:18rem;">
+                    <img class="card-img-top"src="@item.showsImage" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@item.ShowName</h5>
+                    <h5 class="card-title">@item.ArtistName</h5>
+                    <p class="card-text">@item.Description</p>
+                    <a asp-action="ShowsDetails" asp-route-id="@item.ShowId" class="btn btn-outline-info">Book Now</a>
+                </div>
+                </div>
+            </div>
+        }
+    </>
+</div>
+

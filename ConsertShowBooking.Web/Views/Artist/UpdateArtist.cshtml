@@ -1,0 +1,53 @@
+﻿@model ConsertShowBooking.Web.ViewModels.ArtistViewModels.UpdateArtistViewModel
+
+@{
+    ViewData["Title"] = "UpdateArtist";
+}
+
+<br />
+
+<h4>Update Artist Details</h4>
+<hr />
+<div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <img src="@Model.ImageUrl" width="400" height="400" />
+        </div>
+    </div>
+    <div class="col-6 offset-2">
+        <form asp-action="UpdateArtist" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mt-3">
+                <input type="hidden" asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Name" class="control-label">Artist Name:</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Bio" class="control-label">Bio:</label>
+                <textarea asp-for="Bio" class="form-control" ></textarea>
+                <span asp-validation-for="Bio" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="ChooseImage" class="control-label">Choose Image:</label>
+                <input type="file" id="ChooseImage" name="ChooseImage" class="form-control" />
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Update" class="btn btn-outline-primary" />
+                <a asp-action="ArtistList" class="btn btn-outline-secondary">Back</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ConsertShowBooking.Web.ViewModels.ArtistViewModel.ArtistViewModel>
+
+@{
+    ViewData["Title"] = "ArtistList";
+}
+<br />
+
+<h4>Artist List</h4>
+<hr />
+<p>
+    <a asp-action="InsertArtist" class="btn btn-outline-primary">Add New</a>
+</p>
+<table class="table">
+    <thead class="text-center">
+        <tr>
+           
+            <th>
+               Name
+            </th>
+            <th>
+                Biography
+            </th>
+            <th>
+              Artist Image
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+               
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bio)
+            </td>
+            <td>
+                <img src="@item.ImageUrl" width="100" height="100"/>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "UpdateArtist", new {id=item.Id }) |
+                    @Html.ActionLink("Delete", "RemoveArtist", new {id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

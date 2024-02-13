@@ -1,0 +1,63 @@
+﻿@model ConsertShowBooking.Web.ViewModels.ShowViewModels.CreateShowsViewModel
+
+@{
+    ViewData["Title"] = "InsertShow";
+}
+
+<br />
+
+<h4>Create Concert </h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="InsertShow" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mt-3">
+                <label asp-for="ShowName" class="control-label">Concert Name:</label>
+                <input asp-for="ShowName" class="form-control" />
+                <span asp-validation-for="ShowName" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="Description" class="control-label">Description:</label>
+                <textarea asp-for="Description" class="form-control" ></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="ShowDate" class="control-label">Date:</label>
+                <input asp-for="ShowDate" class="form-control" />
+                <span asp-validation-for="ShowDate" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="VenueId" class="control-label">Venue:</label>
+                <select asp-for="VenueId" class="form-control" asp-items="@ViewBag.venueList">
+                    <option value="" disabled selected>-- select venue --</option>
+                </select>
+                <span asp-validation-for="VenueId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="ArtistId" class="control-label">Artist:</label>
+                <select asp-for="ArtistId" class="form-control" asp-items="@ViewBag.artistList" >
+                    <option value="" disabled selected>-- select artist --</option>
+                </select>
+                <span asp-validation-for="ArtistId" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <label asp-for="ImageUrl" class="control-label">Add Image:</label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Save" class="btn btn-outline-primary" />
+                <a asp-action="ShowsList" class="btn btn-outline-secondary">Back</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

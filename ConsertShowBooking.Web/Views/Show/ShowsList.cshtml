@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ConsertShowBooking.Web.ViewModels.ShowViewModels.ShowListViewModel>
+
+@{
+    ViewData["Title"] = "ShowsList";
+}
+<br />
+
+<h4>Concert List</h4>
+<hr />
+<p>
+    <a asp-action="InsertShow" class="btn btn-outline-primary">Add New</a>
+</p>
+<table class="table">
+    <thead class="text-center">
+        <tr>
+           
+            <th>
+                Concert Title
+            </th>
+            <th>
+                Show Date
+            </th>
+            <th>
+             Venue Name
+            </th>
+            <th>
+               Artist Name
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="text-center">
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowName)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.ShowDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VenueName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArtistName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "UpdateShow", new { id=item.Id}) |
+                @Html.ActionLink("GetTickets", "GetTickets", new {id=item.Id}) |
+                @Html.ActionLink("Delete", "RemoveShow", new {id=item.Id})
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
